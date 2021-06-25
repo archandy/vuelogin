@@ -17,6 +17,8 @@
                   type="password"
                   label="password"
           ></v-text-field>
+          <v-btn block large depressed color="cyan accent"
+            @click="login">Login</v-btn>
               </div>
           </v-card>
           </v-flex>
@@ -29,7 +31,17 @@ export default ({
   data () {
     return {
       email: null,
-      password: null
+      password: null,
+      allUsers: [
+        { id: 1, name: 'ej', email: 'abc@adw.com', password: '1234' },
+        { id: 1, name: 'ej1', email: 'abc@def.com', password: '1234' },
+        { id: 1, name: 'ej2', email: 'abc@adw.com', password: '1234' }
+      ]
+    }
+  },
+  methods: {
+    login () {
+      alert()
     }
   }
 })
