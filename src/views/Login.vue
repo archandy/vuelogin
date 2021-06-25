@@ -2,6 +2,12 @@
     <v-container fill-height style="max-width:400px">
         <v-layout align-center row rwap>
             <v-flex xs12>
+              <v-alert :value=isError type="error">
+                please check your password
+              </v-alert>
+              <v-alert :value=isSuccess type="success">
+                login success
+              </v-alert>
             <v-card>
               <v-toolbar flat height="30" class="pa-3">
                 <v-toolbar-title>Login</v-toolbar-title>
@@ -36,12 +42,23 @@ export default ({
         { id: 1, name: 'ej', email: 'abc@adw.com', password: '1234' },
         { id: 1, name: 'ej1', email: 'abc@def.com', password: '1234' },
         { id: 1, name: 'ej2', email: 'abc@adw.com', password: '1234' }
-      ]
+      ],
+      isError: false,
+      isSuccess: false
     }
   },
   methods: {
     login () {
-      alert()
+      let selectedUser = null
+      this.allUsers.forEach(user => {
+        if (user.email === this.email) selectedUser = user
+      })
+      if (selectedUser == null) alert('no user found')
+      else {
+        selectedUser.password !== this.password
+          ? this.isError = true
+          : this.isSuccess = true
+      }
     }
   }
 })
